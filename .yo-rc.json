@@ -1,0 +1,38 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "org.hispci.equipement",
+            "nativeLanguage": "fr"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "equipment",
+        "packageName": "org.hispci.equipement",
+        "packageFolder": "org/hispci/equipement",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "h2Disk",
+        "prodDatabaseType": "mysql",
+        "searchEngine": "elasticsearch",
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "ZDFiNThlMzM4ZDlmZWNlODRiMWRjZDc4ZDI1NzcwOWE5N2FlY2U0OTEyZWRiOGYyNWJhY2ViNDg5NWFmNmQwNTIxZmQ4NDE3NWFkNjA1NzU5NjQzNzVmMmQwMGI1OWE1NzE3YzgzNWYyMWFlMTlmMWQ3ZTVmM2QyOTA4MjVmNTc=",
+        "clientFramework": "angularX",
+        "useSass": false,
+        "clientPackageManager": "npm",
+        "testFrameworks": ["protractor"],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "fr",
+        "languages": ["fr", "en"]
+    }
+}
