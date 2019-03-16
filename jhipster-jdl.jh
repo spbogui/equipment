@@ -1,0 +1,150 @@
+entity EquipmentGroup {
+	groupName String required,
+    description String
+}
+
+entity EquipmentType {
+	label String required,
+    description String
+}
+
+entity Equipment {
+	label String required,
+    description String ,
+    depreciationDate LocalDate
+}
+
+entity EquipmentFeature {
+	name String required,
+    unit String
+}
+
+entity Brand {
+	name String required
+}
+
+entity EquipmentReception {
+    serialNumber String
+}
+
+entity EquipmentReceptionFeature {
+	value String required,
+}
+
+entity EquipmentBreakdown {
+	breakdownLabel String required,
+    breakdownDate LocalDate required
+}
+
+entity Reception {
+	receptionDate LocalDate required
+}
+
+entity EquipmentStatus {
+	name String required
+}
+
+entity EquipmentReceptionStatus {
+	statusStartDate LocalDate required,
+    statusEndDate LocalDate
+}
+
+entity Maintenance {
+	maintenanceDate LocalDate required,
+    memo String
+}
+
+entity AllocationType {
+	name String required
+}
+
+entity EquipmentAllocation {
+	allocationDate LocalDate required,
+    receptionDate LocalDate required
+}
+
+entity JobHierarchy {
+	name String required,
+    description String
+    level Integer
+}
+
+/**
+ * The Employee entity.
+ */
+entity Employee {
+    number String required,
+	/**
+	* The firstname attribute.
+	*/
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	hireDate Instant,
+	salary Long,
+	commissionPct Long
+}
+
+entity Job {
+	jobTitle String required,
+    description String 
+}
+
+entity EmployeeJob {
+	startDate LocalDate required,
+    endDate LocalDate
+}
+
+relationship ManyToMany {
+    EquipmentFeature{equipments} to Equipment{equipmentFeatures}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	EquipmentReceptionFeature{equipmentReception} to EquipmentReception
+    EquipmentReceptionFeature{equipmentFeature} to EquipmentFeature
+    Employee{employeeJob} to EmployeeJob
+    EquipmentReception{equipmentReceptionStatus} to EquipmentReceptionStatus
+    EquipmentStatus{equipmentReceptionStatus} to EquipmentReceptionStatus
+}
+
+//relationship OneToOne {
+	//User{employee} to Employee
+//}
+
+relationship ManyToOne {
+    Job{parentJob} to Job
+    JobHierarchy{parentHierarchy} to JobHierarchy
+    Job{job} to JobHierarchy
+    EquipmentType{equipmentGroup} to EquipmentGroup
+    Equipment{equipmentType} to EquipmentType
+    EquipmentReception{brand} to Brand
+    EquipmentReception{equipment} to Equipment
+    EquipmentReception{reception} to Reception
+    EquipmentBreakdown{equipmentReception} to EquipmentReception
+    Maintenance{equipmentBreakdown} to EquipmentBreakdown
+    //EquipmentReceptionStatus{equipmentReception} to EquipmentReception
+    //EquipmentReceptionStatus{state} to EquipmentStatus
+    EquipmentAllocation{allocationType} to AllocationType
+    EquipmentAllocation{equipmentReception} to EquipmentReception
+    EquipmentAllocation{employee} to Employee
+    EmployeeJob{job} to Job
+    //EmployeeJob{employee} to Employee
+    //EquipmentReception{equipmentReceptionFeature} to EquipmentReceptionFeature
+    //EquipmentFeature{equipmentReceptionFeature} to EquipmentReceptionFeature 
+    
+}
+
+// Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto EquipmentReception,  with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl // except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
